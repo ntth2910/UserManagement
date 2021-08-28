@@ -44,12 +44,13 @@ page: number =1;
       .subscribe(
         (data: any) => {
           console.log(data);
+          this.retrieveUsers();
         },
         (error: any) => {
           console.log(error);
         }
       );
-    this.retrieveUsers();
+
   }
 
 }

@@ -49,7 +49,7 @@ export class UserCreateComponent implements OnInit {
             Validators.maxLength(40)
           ]
         ],
-        isAdmin: [false, Validators.requiredTrue]
+        acceptTerms: [false, Validators.requiredTrue]
       }
     )
 
@@ -67,11 +67,22 @@ export class UserCreateComponent implements OnInit {
         (response: any) => {
           console.log(response);
           this.message = response.message ? response.message : 'This user was creates successfully!';
+          alert(this.message);
         },
         (error: any) => {
           console.log(error);
         });
 
+  }
+  getPassword(){
+    var chars ="0123456789";
+    var passwordLenght = 8;
+    var password="";
+    for (var i =0; i<passwordLenght; i++){
+var randomNumber = Math.floor(Math.random()* chars.length);
+password += chars.substring(randomNumber, randomNumber + 1);
+    }
+    return this.user.password= password;
   }
 
   onSubmit(): any {
@@ -85,7 +96,7 @@ export class UserCreateComponent implements OnInit {
 
 
 
-    console.log(JSON.stringify(this.form.value, null, 2));
+
   }
 
 
@@ -95,5 +106,6 @@ export class UserCreateComponent implements OnInit {
     this.submitted = false;
     this.form.reset();
   }
+
 
 }

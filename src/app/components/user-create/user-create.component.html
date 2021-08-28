@@ -48,7 +48,7 @@
           </a>
           <div class="collapse" id="collapseUser" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
-              <a class="nav-link" >Add New User</a>
+              <a class="nav-link">Add New User</a>
               <a class="nav-link" routerLink="/users">User List</a>
             </nav>
           </div>
@@ -96,9 +96,7 @@
           <div class="col-md-6 form-group">
             <label for="validationCustom01" class="form-label">Fullname</label>
             <input type="text" class="form-control" id="validationCustom01" required formControlName="fullname" class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }"
-              [(ngModel)]="user.fullname" name="fullname"
-              >
+              [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }" [(ngModel)]="user.fullname" name="fullname">
             <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
               <div *ngIf="f.fullname.errors.required">Fullname is required</div>
             </div>
@@ -106,9 +104,7 @@
           <div class="col-md-6 form-group">
             <label for="validationCustom02" class="form-label">Email</label>
             <input type="text" class="form-control" id="validationCustom02" required formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-name="email"
-              [(ngModel)]="user.email"
-              >
+              name="email" [(ngModel)]="user.email">
             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
               <div *ngIf="f.email.errors.required">Email is required</div>
               <div *ngIf="f.email.errors.email">Email is invalid</div>
@@ -117,11 +113,8 @@ name="email"
 
           <div class="col-md-6 form-group">
             <label for="validationCustom03" class="form-label">Password</label>
-            <input type="password" class="form-control" id="validationCustom03" required formControlName="password" class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-name="password"
-              [(ngModel)]="user.password"
-              >
+            <input type="password" (focus)="getPassword()" class="form-control" id="validationCustom03" required formControlName="password" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }" name="password" [(ngModel)]="user.password">
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">Password is required</div>
               <div *ngIf="f.password.errors.minlength">
@@ -146,7 +139,7 @@ name="password"
             </div>
           </div>
           <div class="d-grid gap-2 col-2 mx-auto form-group">
-            <button class="btn btn-primary" type="submit" (click)="onSubmit()" >Create</button>
+            <button class="btn btn-primary" type="submit" (click)="onSubmit()">Create</button>
 
             <button class="btn btn-primary btn btn-warning float-right" type="button" (click)="onReset()">Cancel</button>
           </div>

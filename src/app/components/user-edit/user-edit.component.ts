@@ -15,14 +15,14 @@ export class UserEditComponent implements OnInit {
 
   // id = this.actRoute.snapshot.params['id'];
 
-  currentUser: User={
+  currentUser: User = {
     id: '',
-    fullname:'',
-    email:'',
-    password:'',
-    isAdmin:false
+    fullname: '',
+    email: '',
+    password: '',
+    isAdmin: true
   };
-  message='';
+  message = '';
 
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -41,10 +41,10 @@ export class UserEditComponent implements OnInit {
 
     this.form = this.formBuilder.group(
       {
-        fullname: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
+        fullname: [this.currentUser.fullname, Validators.required],
+        email: [this.currentUser.email, [Validators.required, Validators.email]],
         password: [
-          '',
+          this.currentUser.password,
           [
             Validators.required,
             Validators.minLength(6),
@@ -73,25 +73,28 @@ export class UserEditComponent implements OnInit {
   }
 
   updateUser(): void {
-    this.message = '';
+
 
     this.userService.update(this.currentUser.id, this.currentUser)
       .subscribe(
         response => {
           console.log(response);
-          this.message = response.message ? response.message : 'This user was updated successfully!';
+
         },
         error => {
           console.log(error);
         });
   }
 
-    onSubmit(): void {
-      this.submitted = true;
+  onSubmit(): void {
 
-      if (this.form.invalid) {
-        return;
-      }
+    this.submitted = true;
+
+    if (this.form.invalid) {
+      alert('invalid');
+      return;
+    }
+
 
     console.log(JSON.stringify(this.form.value, null, 2));
   }
