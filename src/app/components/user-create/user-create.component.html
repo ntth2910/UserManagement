@@ -110,11 +110,13 @@
               <div *ngIf="f.email.errors.email">Email is invalid</div>
             </div>
           </div>
-
+<!-- pass -->
           <div class="col-md-6 form-group">
             <label for="validationCustom03" class="form-label">Password</label>
+            <show-hide-password size="sm" >
             <input type="password" (focus)="getPassword()" class="form-control" id="validationCustom03" required formControlName="password" class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.password.errors }" name="password" [(ngModel)]="user.password">
+            </show-hide-password>
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">Password is required</div>
               <div *ngIf="f.password.errors.minlength">
